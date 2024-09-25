@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View, Pressable, Image, TouchableOpacity } from 'react-native';
 import { Task } from '../dtos/Task';
+import { Ionicons } from '@expo/vector-icons';
 
 interface TaskItemProps {
     task: Task;
@@ -20,11 +21,11 @@ export default function TaskItem({ task, onDelete, taskDoneChange }: TaskItemPro
     return (
         <View style={styles.task}>
             <Pressable style={task.done ? null: styles.checkboxBase} onPress={()=> handleDoneChangePress(task.id)}>
-                {task.done && <Image source={require('../assets/check.png')}/>}
+                {task.done && <Ionicons name="checkmark-circle" size={21} color="#5E60CE" />}
             </Pressable>
             <Text style={task.done? styles.doneText : styles.text }>{task.name}</Text>
             <TouchableOpacity style={styles.deleteButton} onPress={()=> handleDeletePress(task.id)}>
-                <Image source={require('../assets/trash.png')}/>
+                <Ionicons name="trash" size={16} color="#808080" />
             </TouchableOpacity>
         </View>
     )
@@ -67,5 +68,5 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         padding: 8,
-    }
+    },
 })
